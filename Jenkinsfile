@@ -30,7 +30,7 @@ pipeline{
                     // sh 'docker stop angular'
                     // sh 'docker rm angular'
                 }
-                {
+                script{
                     try{
                         sh 'curl localhost:4000'
                     }catch(Exception e){
