@@ -19,11 +19,13 @@ pipeline{
                 withDockerRegistry(credentialsId: 'docker-id') {
                     sh 'docker build -t my-node .'
                     sh 'docker tag my-node mingming21400/my-node:v1.0'
-                    sh 'docker push mingming21400/my-node:v1.0'
+                    sh 'docker push mingming21400/my-node:v1.1'
                     sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node'
+                    sh 'docker exec -it my-node bash'
                 }
                 script{
                     try{
+                        sh 'cat /etc/os-release'
                         sh 'curl localhost:4000'
                     }catch(Exception e){
                         echo e.toString()
@@ -34,7 +36,7 @@ pipeline{
         stage('Test'){
             steps{
                sh """
-                    echo ${OS_VERSION}
+                   
 
                """
             }
