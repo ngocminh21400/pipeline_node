@@ -20,17 +20,17 @@ pipeline{
                     sh 'docker build -t my-node .'
                     sh 'docker tag my-node mingming21400/my-node:v1.1'
                     sh 'docker push mingming21400/my-node:v1.1'
-                    sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node'
+                    // sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node'
                     sh """
-                        docker exec -u root my-node /bin/bash
-                        docker ps
+                        docker run -a stdin -a stdout -i -t --name my-node mingming21400/my-node /bin/bash
+                        
                         cat /etc/os-release
                     """
                 }
 
                 script{
                     try{
-                        sh 'docker ps'
+                        sh 'ls'
                         sh 'curl localhost:4000'
                     }catch(Exception e){
                         echo e.toString()
