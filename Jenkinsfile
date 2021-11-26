@@ -32,14 +32,9 @@ pipeline{
         }
         stage('Test'){
             steps{
-                script{
-                    int i = 0
-                    timeout(time: 5, unit: 'SECONDS') {
-                        retry(5) {
-                            echo 'Testing...' + i.toString()
-                            i++
-                        }
-                    }
+                retry(5) {
+                    echo 'Testing...' + i.toString()
+                    i++
                 }
 
             }
