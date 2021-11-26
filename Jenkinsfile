@@ -7,10 +7,10 @@ pipeline{
                 sh 'cat /etc/os-release'
                 git 'https://github.com/ngocminh21400/jenkins_pipeline.git'
 
-                def version = version()
-                if(version){
-                    "Building version ${version}"
-                }
+                // def version = version()
+                // if(version){
+                //     "Building version ${version}"
+                // }
 
                 echo 'Clone Done..'
             }
@@ -33,7 +33,7 @@ pipeline{
         }
         stage('Test'){
             steps{
-                def i = 0
+                int i = 0
                 timeout(time: 5, unit: 'SECONDS') {
                     retry(5) {
                         echo 'Testing... ${i}'
