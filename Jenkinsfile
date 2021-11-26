@@ -7,11 +7,6 @@ pipeline{
                 sh 'cat /etc/os-release'
                 git 'https://github.com/ngocminh21400/pipeline_node.git'
 
-                // def version = version()
-                // if(version){
-                //     "Building version ${version}"
-                // }
-
                 echo 'Clone Done..'
             }
         }
@@ -25,10 +20,6 @@ pipeline{
                     sh 'docker tag my-node mingming21400/my-node:v1.0'
                     sh 'docker push mingming21400/my-node:v1.0'
                     sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node'
-
-                    
-                    // sh 'docker stop angular'
-                    // sh 'docker rm angular'
                 }
                 script{
                     try{
@@ -45,7 +36,7 @@ pipeline{
                     int i = 0
                     timeout(time: 5, unit: 'SECONDS') {
                         retry(5) {
-                            echo 'Testing... ${i}'
+                            echo 'Testing...' + i.toString()
                             i++
                         }
                     }
