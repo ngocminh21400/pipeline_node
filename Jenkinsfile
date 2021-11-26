@@ -21,7 +21,7 @@ pipeline{
                 echo 'Building..'
 
                 withDockerRegistry(credentialsId: 'docker-id') {
-                    sh 'docker kill $(docker ps -q)'
+                    sh 'docker stop my-node'
                     sh 'docker container prune --force'
                     sh 'docker build -t my-node .'
                     sh 'docker tag my-node mingming21400/my-node:v1.0'
