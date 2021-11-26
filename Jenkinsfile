@@ -1,6 +1,6 @@
 
 pipeline{
-    agent {label 'centos-vm'}
+    agent {label 'Built-In Node'}
 
     stages{
         stage('Git update'){
