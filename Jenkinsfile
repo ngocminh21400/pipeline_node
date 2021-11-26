@@ -1,7 +1,7 @@
 
 pipeline{
-    // agent {label 'centos-vm'}
-    agent any
+    agent {label 'centos-vm'}
+
     stages{
         stage('Git update'){
             steps{
