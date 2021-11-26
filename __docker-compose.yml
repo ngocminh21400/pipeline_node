@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  my-node-image:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: my-node-app
+    ports:
+      - '4040:4000'
+
+
+      # //docker run -a stdin -a stdout -i -t ubuntu /bin/bash
