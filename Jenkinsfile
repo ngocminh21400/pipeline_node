@@ -57,8 +57,8 @@ pipeline{
     }  
     post {
         always {
-            sh 'docker stop my-node'
-            sh 'docker container prune --force'
+            // sh 'docker stop my-node'
+            // sh 'docker container prune --force'
             echo 'One way or another, I have finished'
             deleteDir() /* clean up our workspace */
         }
