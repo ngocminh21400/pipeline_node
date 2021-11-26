@@ -27,7 +27,7 @@ pipeline{
                     //     cat /etc/os-release
                     // """
                 }
-                withDockerContainer(args: '-p 4000:4000 --name my-node' , image: 'mingming21400/my-node') {
+                withDockerContainer(args: '-p 4000:4000 --name my-node --user root' , image: 'mingming21400/my-node') {
                     sh """
                         ls
                         cat /etc/os-release
