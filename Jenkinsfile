@@ -27,10 +27,9 @@ pipeline{
                     //     cat /etc/os-release
                     // """
                 }
-                withDockerContainer(args: '-p 4000:4000 --name my-node' , image: 'mingming21400/my-node') {
+                withDockerContainer(args: '-d -p 4000:4000 --name my-node' , image: 'mingming21400/my-node') {
                     sh """
-                        ls
-                        cat /etc/os-release
+                        curl localhost:4000
                     """
                 }
 
@@ -56,8 +55,8 @@ pipeline{
     }  
     post {
         always {
-            sh 'docker stop my-node'
-            sh 'docker container prune --force'
+            // sh 'docker stop my-node'
+            // sh 'docker container prune --force'
             echo 'One way or another, I have finished'
             deleteDir() /* clean up our workspace */
         }
