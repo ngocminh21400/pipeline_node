@@ -40,7 +40,7 @@ pipeline{
             steps{
                 script {
                     map.each { entry ->
-                        {echo "$entry.value"} 
+                        echo "$entry.value"
                     }
                 }
 
