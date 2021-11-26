@@ -5,7 +5,7 @@ pipeline{
         stage('Git update'){
             steps{
                 sh 'cat /etc/os-release'
-                git 'https://github.com/ngocminh21400/jenkins_pipeline.git'
+                git 'https://github.com/ngocminh21400/pipeline_node.git'
 
                 // def version = version()
                 // if(version){
