@@ -31,8 +31,8 @@ pipeline{
                     sh """
                         ls
                         cat /etc/os-release 
-                        apt update && apt upgrade  < /dev/null
-                        apt install curl  < /dev/null
+                        apt --yes update && apt upgrade
+                        apt --yes install curl 
                         curl localhost:4000
                     """
                 }
