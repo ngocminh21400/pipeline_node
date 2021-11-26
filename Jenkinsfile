@@ -14,9 +14,7 @@ pipeline{
 
         stage('Docker build'){
             steps{
-                sh """
-                    echo ${WORKSPACE}
-                """
+
                 echo 'Building..'
 
                 withDockerRegistry(credentialsId: 'docker-id') {
