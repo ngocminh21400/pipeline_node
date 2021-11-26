@@ -33,8 +33,7 @@ pipeline{
         stage('Test'){
             steps{
                 retry(5) {
-                    echo 'Testing...' + i.toString()
-                    i++
+                    echo 'Testing...' 
                 }
 
             }
