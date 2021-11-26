@@ -26,7 +26,7 @@ pipeline{
 
                 script{
                     try{
-                        sh 'cat /etc/os-release'
+                        sh 'docker ps'
                         sh 'curl localhost:4000'
                     }catch(Exception e){
                         echo e.toString()
