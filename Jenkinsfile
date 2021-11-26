@@ -25,9 +25,12 @@ pipeline{
                     sh 'docker tag my-node mingming21400/my-node:v1.0'
                     sh 'docker push mingming21400/my-node:v1.0'
                     sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node'
-                    try{
-                        sh 'curl localhost:4000'
-                    }catch{}
+                    script{
+                        try{
+                            sh 'curl localhost:4000'
+                        }catch{}
+                    }
+
                     
                     // sh 'docker stop angular'
                     // sh 'docker rm angular'
