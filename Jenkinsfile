@@ -33,7 +33,10 @@ pipeline{
         }
         stage('Test'){
             steps{
-               
+               sh """
+                    echo ${OS_VERSION}
+
+               """
             }
         }
 
