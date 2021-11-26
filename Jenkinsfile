@@ -41,7 +41,7 @@ pipeline{
             steps{
                script{
                     try{
-                        
+                        sh 'curl localhost'
                         sh 'curl localhost:4000'
                     }catch(Exception e){
                         echo "ERROR TEST"
@@ -57,8 +57,8 @@ pipeline{
     }  
     post {
         always {
-            // sh 'docker stop my-node'
-            // sh 'docker container prune --force'
+            sh 'docker stop my-node'
+            sh 'docker container prune --force'
             echo 'One way or another, I have finished'
             deleteDir() /* clean up our workspace */
         }
