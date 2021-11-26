@@ -40,11 +40,7 @@ pipeline{
             steps{
                 script {
                     map.each { entry ->
-                        stage (entry.key) {
-                            timestamps{
-                                echo "$entry.value"
-                            }
-                        }
+                        {echo "$entry.value"} 
                     }
                 }
 
