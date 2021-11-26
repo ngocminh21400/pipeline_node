@@ -47,7 +47,10 @@ pipeline{
                         echo e.toString()
                     }
                 }
+
+                sh "python3 ./test/test1.py"
             }
+
         }
 
     }  
