@@ -33,14 +33,16 @@ pipeline{
         }
         stage('Test'){
             steps{
-                int i = 0
-                timeout(time: 5, unit: 'SECONDS') {
-                    retry(5) {
-                        echo 'Testing... ${i}'
-                        i++
+                script{
+                    int i = 0
+                    timeout(time: 5, unit: 'SECONDS') {
+                        retry(5) {
+                            echo 'Testing... ${i}'
+                            i++
+                        }
                     }
                 }
-                
+
             }
         }
 
