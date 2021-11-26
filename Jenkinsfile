@@ -21,14 +21,7 @@ pipeline{
                     sh 'docker tag my-node mingming21400/my-node:v1.1'
                     sh 'docker push mingming21400/my-node:v1.1'
                     sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node'
-                    sh """
-                        docker exec --tty my-node bash
-                        
-                        cat /etc/os-release
-                        apt --yes update && apt --yes upgrade
-                        apt --yes install curl 
-                        curl localhost:4000
-                    """
+   
                 }
                 // withDockerContainer(args: '-p 4000:4000 --name my-node --user root' , image: 'mingming21400/my-node') {
                 //     sh """
@@ -41,22 +34,19 @@ pipeline{
                 //     """
                 // }
 
-                script{
+                
+            }
+        }
+        stage('Test'){
+            steps{
+               script{
                     try{
-                        sh 'cat /etc/os-release'
+                        
                         sh 'curl localhost:4000'
                     }catch(Exception e){
                         echo e.toString()
                     }
                 }
-            }
-        }
-        stage('Test'){
-            steps{
-               sh """
-                   
-
-               """
             }
         }
 
