@@ -42,6 +42,11 @@ pipeline{
                script{
                     try{
                         sh 'curl localhost'
+                    }catch(Exception e){
+                        echo "ERROR TEST"
+                        echo e.toString()
+                    }
+                     try{
                         sh 'curl localhost:4000'
                     }catch(Exception e){
                         echo "ERROR TEST"

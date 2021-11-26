@@ -14,8 +14,11 @@ driver.get('http://localhost:4000')
 #driver.close()
 #wait = WebDriverWait( driver, 5 )
 print(driver.title)
+try:
+  assert driver.title == "Google"
+except:
+  print("NOT Google!")
 
-assert driver.title == "Google"
 print('DONE')
 
 #assertEqual(driver.title == "Google")
