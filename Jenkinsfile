@@ -30,9 +30,9 @@ pipeline{
                 withDockerContainer(args: '-p 4000:4000 --name my-node --user root' , image: 'mingming21400/my-node') {
                     sh """
                         ls
-                        cat /etc/os-release
-                        apt update && apt upgrade
-                        apt install curl
+                        cat /etc/os-release 
+                        apt update && apt upgrade  < /dev/null
+                        apt install curl  < /dev/null
                         curl localhost:4000
                     """
                 }
