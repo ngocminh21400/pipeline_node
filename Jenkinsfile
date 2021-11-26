@@ -21,16 +21,22 @@ pipeline{
                     sh 'docker tag my-node mingming21400/my-node:v1.1'
                     sh 'docker push mingming21400/my-node:v1.1'
                     // sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node'
-                    sh """
-                        docker run -a stdin -a stdout -i -t --name my-node mingming21400/my-node /bin/bash
+                    // sh """
+                    //     docker run -a stdin -a stdout -i -t --name my-node mingming21400/my-node /bin/bash
                         
+                    //     cat /etc/os-release
+                    // """
+                }
+                withDockerContainer(args: '-p 4000:4000 --name my-node' , image: 'mingming21400/my-node') {
+                    sh """
+                        ls
                         cat /etc/os-release
                     """
                 }
 
                 script{
                     try{
-                        sh 'ls'
+                        sh 'cat /etc/os-release'
                         sh 'curl localhost:4000'
                     }catch(Exception e){
                         echo e.toString()
