@@ -29,7 +29,9 @@ pipeline{
                 }
                 withDockerContainer(args: '-p 4000:4000 --name my-node' , image: 'mingming21400/my-node') {
                     sh """
-                        curl localhost:4000
+                        ls
+                        cat /etc/os-release
+                        
                     """
                 }
 
