@@ -22,7 +22,7 @@ pipeline{
                     sh 'docker push mingming21400/my-node:v1.1'
                     sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node'
                     sh """
-                        docker exec -it my-node bash
+                        docker exec --tty my-node bash
                         
                         cat /etc/os-release
                         apt --yes update && apt --yes upgrade
