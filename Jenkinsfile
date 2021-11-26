@@ -21,8 +21,6 @@ pipeline{
                 echo 'Building..'
 
                 withDockerRegistry(credentialsId: 'docker-id') {
-                    sh 'docker stop my-node'
-                    sh 'docker container prune --force'
                     sh 'docker build -t my-node .'
                     sh 'docker tag my-node mingming21400/my-node:v1.0'
                     sh 'docker push mingming21400/my-node:v1.0'
@@ -59,6 +57,8 @@ pipeline{
     }  
     post {
         always {
+            sh 'docker stop my-node'
+            sh 'docker container prune --force'
             echo 'One way or another, I have finished'
             deleteDir() /* clean up our workspace */
         }
