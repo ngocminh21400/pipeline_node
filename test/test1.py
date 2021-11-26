@@ -13,6 +13,7 @@ driver.get('http://google.com/')
 # driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
 #driver.close()
 #wait = WebDriverWait( driver, 5 )
+print(driver.title)
 
 assert driver.title == "Google"
 print('DONE')

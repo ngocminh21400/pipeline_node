@@ -44,6 +44,7 @@ pipeline{
                         
                         sh 'curl localhost:4000'
                     }catch(Exception e){
+                        echo "ERROR TEST"
                         echo e.toString()
                     }
                 }
