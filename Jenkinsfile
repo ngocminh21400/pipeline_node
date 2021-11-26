@@ -1,8 +1,3 @@
-def map = [
-        Bob  : 42,
-        Alice: 54,
-        Max  : 33
-]
 
 pipeline{
     agent {label 'centos-vm'}
@@ -19,6 +14,9 @@ pipeline{
 
         stage('Docker build'){
             steps{
+                sh """
+                    echo ${WORKSPACE}
+                """
                 echo 'Building..'
 
                 withDockerRegistry(credentialsId: 'docker-id') {
@@ -38,12 +36,7 @@ pipeline{
         }
         stage('Test'){
             steps{
-                script {
-                    map.each { entry ->
-                        echo "$entry.value"
-                    }
-                }
-
+               
             }
         }
 
