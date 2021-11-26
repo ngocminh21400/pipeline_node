@@ -24,7 +24,7 @@ pipeline{
                     sh """
                         docker exec -u root my-node /bin/bash
                         docker ps
-                        ls
+                        cat /etc/os-release
                     """
                 }
 
