@@ -1,3 +1,9 @@
+def map = [
+        Bob  : 42,
+        Alice: 54,
+        Max  : 33
+]
+
 pipeline{
     agent {label 'centos-vm'}
 
@@ -32,8 +38,14 @@ pipeline{
         }
         stage('Test'){
             steps{
-                retry(5) {
-                    echo 'Testing...' 
+                script {
+                    map.each { entry ->
+                        stage (entry.key) {
+                            timestamps{
+                                echo "$entry.value"
+                            }
+                        }
+                    }
                 }
 
             }
