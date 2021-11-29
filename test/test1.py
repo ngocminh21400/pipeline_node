@@ -13,15 +13,15 @@ driver.get('http://localhost:4000')
 # driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
 #driver.close()
 #wait = WebDriverWait( driver, 5 )
-for request in driver.requests:
-    if request.response:
-        print(
-            request.url,
-            request.response.status_code,
-            request.response.headers['Content-Type']
-        )
+# for request in driver.requests:
+#     if request.response:
+#         print(
+#             request.url,
+#             request.response.status_code,
+#             request.response.headers['Content-Type']
+#         )
 
-        
+
 try:
   assert driver.title == "Google"
 except:
