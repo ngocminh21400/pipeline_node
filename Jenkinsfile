@@ -24,7 +24,6 @@ pipeline{
                 echo 'Clone Done..'
             }
         }
-        boolean isBuildSuccess = true
         stage('Docker build'){
             steps{
                 echo 'Building..'
@@ -37,7 +36,7 @@ pipeline{
     
                     }
                 }catch(Exception e){
-                    isBuildSuccess = false
+                    
                 }
 
             }
