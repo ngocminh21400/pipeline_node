@@ -1,37 +1,26 @@
 
 pipeline{
     parameters {
-        agentParameter(name : 'AGENT', description: 'Choose node to run job')
-        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-
-        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+        choice(name : 'AGENT',choices: ['centos-vm' ,'master'], description: 'Choose node to run job')
 
         choice(name: 'REPEAT_TIMES', choices: [1,2,3,4], description: 'Choose times to repeat get API test')
-
+        
+        booleanParam(name: 'CHECKOUT_CODE', defaultValue: true)
     }
-    
+
     agent {label params.AGENT == "any" ? "" : params.AGENT}
 
     stages{
         stage('Git update'){
-            //  steps {
-            //     echo "Hello ${params.PERSON}"
+            when { 
+                parameters name: 'AGENT', value: true
+            }
+            steps{
+                sh 'cat /etc/os-release'
+                git 'https://github.com/ngocminh21400/pipeline_node.git'
 
-            //     echo "Biography: ${params.BIOGRAPHY}"
-
-            //     echo "Toggle: ${params.TOGGLE}"
-
-            //     echo "Choice: ${params.CHOICE}"
-
-            //     echo "Password: ${params.PASSWORD}"
-            // }
-            // steps{
-            //     echo env.BRANCH_NAME
-            //     sh 'cat /etc/os-release'
-            //     git 'https://github.com/ngocminh21400/pipeline_node.git'
-
-            //     echo 'Clone Done..'
-            // }
+                echo 'Clone Done..'
+            }
         }
 
         stage('Docker build'){
@@ -45,21 +34,12 @@ pipeline{
                     sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node'
    
                 }
-                // withDockerContainer(args: '-p 4000:4000 --name my-node --user root' , image: 'mingming21400/my-node') {
-                //     sh """
-                //         ls
-                //         cat /etc/os-release 
-                //         pwd
-                //         // apt --yes update && apt --yes upgrade
-                //         // apt --yes install curl 
-                //         // curl localhost:4000
-                //     """
-                // }
-
-                
             }
         }
         stage('Test'){
+            when{
+                beforeAgent true
+            }
             steps{
                script{
                     try{
