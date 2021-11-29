@@ -45,7 +45,7 @@ pipeline{
                     }catch(Exception e){
                          buildSuccess = 0;
                     }
-                    println(buildSuccess);
+                    
                 }
 
             }
@@ -56,7 +56,7 @@ pipeline{
             steps{
 
                 script{
-                    if(buildSuccess == 1){
+                    if(buildSuccess == true){
                         try{
                             sh 'curl localhost:4000'
                         }catch(Exception e){
@@ -75,8 +75,8 @@ pipeline{
                 echo "Test radom API";
      
                 script{
-                    for(int i = 0;i<5;i++) {
-                        println(i);
+                    for(int i = 0;i< params.REPEAT_TIMES;i++) {
+                        sh 'curl localhost:4000/random'
                     }
                 }
 
