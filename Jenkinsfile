@@ -13,7 +13,7 @@ pipeline{
     stages{
         stage('Git update'){
             when { 
-                parameters name: 'AGENT', value: true
+                params.AGENT == true
             }
             steps{
                 sh 'cat /etc/os-release'
@@ -36,6 +36,7 @@ pipeline{
                 }
             }
         }
+
         stage('Test'){
             when{
                 beforeAgent true
