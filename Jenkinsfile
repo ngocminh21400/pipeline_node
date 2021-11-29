@@ -61,8 +61,17 @@ pipeline{
                         echo e.toString()
                     }
                 }
-
+                echp 'Selenium test'
                 sh "python3 ./test/test1.py"
+
+                script{
+                    echo "Test radom API";
+                    retry(3) {
+                        sh "curl localhost:4000/random"
+                    }
+
+
+                }
             }
 
         }
