@@ -14,7 +14,7 @@ pipeline{
         stage('Git update'){
             when { 
                 expression{
-                    params.AGENT == true
+                    params.AGENT != true
                 }
             }
             steps{
