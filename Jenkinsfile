@@ -60,8 +60,11 @@ pipeline{
                 sh "python3 ./test/test1.py"
 
                 echo "Test radom API";
-                retry(3) {
-                    sh "curl localhost:4000/random"
+     
+                script{
+                    for (v in 1:5){
+                        sh "curl localhost:4000/random"
+                    }
                 }
 
 
