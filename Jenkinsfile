@@ -28,7 +28,7 @@ pipeline{
             steps{
                 echo 'Building..'
                 script{
-                    int buildSuccess = 1
+                    int buildSuccess = 1;
                     try{
                         withDockerRegistry(credentialsId: 'docker-id') {
                             sh 'docker build -t my-node .'
@@ -38,28 +38,30 @@ pipeline{
         
                         }
                     }catch(Exception e){
-                         buildSuccess = 0
+                         buildSuccess = 0;
                     }
+                    println(buildSuccess);
                 }
 
             }
         }
 
         stage('Test'){
-            when { 
-                expression{
-                    buildSuccess != 1
-                }
-            }
+
             steps{
 
                 script{
-                    try{
-                        sh 'curl localhost:4000'
-                    }catch(Exception e){
-                        echo "ERROR TEST"
-                        echo e.toString()
+                    if(buildSuccess == 1){
+                        try{
+                            sh 'curl localhost:4000'
+                        }catch(Exception e){
+                            echo "ERROR TEST"
+                            echo e.toString()
+                        }
+                    }else{
+                        echo "Stage Test skipped"
                     }
+            
                 }
 
                 echo 'Selenium test'
