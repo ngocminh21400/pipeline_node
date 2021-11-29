@@ -18,7 +18,7 @@ pipeline{
                 }
             }
             steps{
-                sh 'cat /etc/os-release'
+                //sh 'cat /etc/os-release'
                 git 'https://github.com/ngocminh21400/pipeline_node.git'
 
                 echo 'Clone Done..'
@@ -55,7 +55,8 @@ pipeline{
                         echo e.toString()
                     }
                 }
-                echp 'Selenium test'
+
+                echo 'Selenium test'
                 sh "python3 ./test/test1.py"
 
                 echo "Test radom API";
