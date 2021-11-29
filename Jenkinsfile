@@ -36,7 +36,7 @@ pipeline{
                         sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node'
     
                     }
-                }catch{
+                }catch(Exception e){
                     isBuildSuccess = false
                 }
 
@@ -57,7 +57,7 @@ pipeline{
                         echo "ERROR TEST"
                         echo e.toString()
                     }
-                     try{
+                    try{
                         sh 'curl localhost:4000'
                     }catch(Exception e){
                         echo "ERROR TEST"
