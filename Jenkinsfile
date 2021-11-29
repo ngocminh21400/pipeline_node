@@ -28,6 +28,7 @@ pipeline{
             steps{
                 echo 'Building..'
                 script{
+                    boolean buildSuccess = true
                     try{
                         withDockerRegistry(credentialsId: 'docker-id') {
                             sh 'docker build -t my-node .'
@@ -37,7 +38,7 @@ pipeline{
         
                         }
                     }catch(Exception e){
-                        
+                         buildSuccess = false
                     }
                 }
 
@@ -45,9 +46,14 @@ pipeline{
         }
 
         stage('Test'){
-
+            when { 
+                expression{
+                    buildSuccess != true
+                }
+            }
             steps{
-               script{
+
+                script{
                     try{
                         sh 'curl localhost:4000'
                     }catch(Exception e){
