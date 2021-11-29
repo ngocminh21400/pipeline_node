@@ -28,7 +28,7 @@ pipeline{
             steps{
                 echo 'Building..'
                 script{
-                    boolean buildSuccess = true
+                    int buildSuccess = 1
                     try{
                         withDockerRegistry(credentialsId: 'docker-id') {
                             sh 'docker build -t my-node .'
@@ -38,7 +38,7 @@ pipeline{
         
                         }
                     }catch(Exception e){
-                         buildSuccess = false
+                         buildSuccess = 0
                     }
                 }
 
@@ -48,7 +48,7 @@ pipeline{
         stage('Test'){
             when { 
                 expression{
-                    buildSuccess != true
+                    buildSuccess != 1
                 }
             }
             steps{
