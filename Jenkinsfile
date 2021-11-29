@@ -30,10 +30,10 @@ pipeline{
                 script{
                     try{
                         withDockerRegistry(credentialsId: 'docker-id') {
-                            // sh 'docker build -t my-node .'
-                            // sh 'docker tag my-node mingming21400/my-node:v1.1'
-                            // sh 'docker push mingming21400/my-node:v1.1'
-                            sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node'
+                            sh 'docker build -t my-node .'
+                            sh 'docker tag my-node mingming21400/my-node:v1.1'
+                            sh 'docker push mingming21400/my-node:v1.1'
+                            sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node:v1.1'
         
                         }
                     }catch(Exception e){
