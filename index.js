@@ -23,5 +23,9 @@ app.get('/api', (req, res) => {
         ]
     });
 });
-
+app.get('/random', (req, res) =>
+    res.json(
+        Math.random()
+    )
+);
 app.listen(PORT,()=>console.log(`on port ${PORT}`))
