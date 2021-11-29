@@ -24,24 +24,30 @@ pipeline{
                 echo 'Clone Done..'
             }
         }
-
+        def isBuildSuccess = true
         stage('Docker build'){
             steps{
                 echo 'Building..'
-
-                withDockerRegistry(credentialsId: 'docker-id') {
-                    sh 'docker build -t my-node .'
-                    sh 'docker tag my-node mingming21400/my-node:v1.1'
-                    sh 'docker push mingming21400/my-node:v1.1'
-                    sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node'
-   
+                try{
+                    withDockerRegistry(credentialsId: 'docker-id') {
+                        sh 'docker build -t my-node .'
+                        sh 'docker tag my-node mingming21400/my-node:v1.1'
+                        sh 'docker push mingming21400/my-node:v1.1'
+                        sh 'docker run -d -p 4000:4000 --name my-node mingming21400/my-node'
+    
+                    }
+                }catch{
+                    isBuildSuccess = false
                 }
+
             }
         }
 
         stage('Test'){
             when{
-                beforeAgent true
+                expression{
+                    isBuildSuccess == true
+                }
             }
             steps{
                script{
