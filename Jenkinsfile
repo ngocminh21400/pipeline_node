@@ -24,7 +24,7 @@ pipeline{
                 echo 'Clone Done..'
             }
         }
-        def isBuildSuccess = true
+        boolean isBuildSuccess = true
         stage('Docker build'){
             steps{
                 echo 'Building..'
