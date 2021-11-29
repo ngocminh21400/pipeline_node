@@ -62,8 +62,8 @@ pipeline{
                 echo "Test radom API";
      
                 script{
-                    for (v in 1:5){
-                        sh "curl localhost:4000/random"
+                    for(int i = 0;i<5;i++) {
+                        println(i);
                     }
                 }
 
