@@ -5,6 +5,7 @@ pipeline{
     stages{
         stage('Git update'){
             steps{
+                echo BRANCH_NAME
                 sh 'cat /etc/os-release'
                 git 'https://github.com/ngocminh21400/pipeline_node.git'
 
