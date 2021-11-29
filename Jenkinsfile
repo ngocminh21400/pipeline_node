@@ -25,13 +25,13 @@ pipeline{
 
                 echo "Password: ${params.PASSWORD}"
             }
-            steps{
-                echo env.BRANCH_NAME
-                sh 'cat /etc/os-release'
-                git 'https://github.com/ngocminh21400/pipeline_node.git'
+            // steps{
+            //     echo env.BRANCH_NAME
+            //     sh 'cat /etc/os-release'
+            //     git 'https://github.com/ngocminh21400/pipeline_node.git'
 
-                echo 'Clone Done..'
-            }
+            //     echo 'Clone Done..'
+            // }
         }
 
         stage('Docker build'){
