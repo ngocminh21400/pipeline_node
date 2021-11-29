@@ -45,11 +45,7 @@ pipeline{
         }
 
         stage('Test'){
-            when{
-                expression{
-                    isBuildSuccess == true
-                }
-            }
+
             steps{
                script{
                     try{
