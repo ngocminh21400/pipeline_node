@@ -49,12 +49,6 @@ pipeline{
             steps{
                script{
                     try{
-                        sh 'curl localhost'
-                    }catch(Exception e){
-                        echo "ERROR TEST"
-                        echo e.toString()
-                    }
-                    try{
                         sh 'curl localhost:4000'
                     }catch(Exception e){
                         echo "ERROR TEST"
@@ -64,14 +58,12 @@ pipeline{
                 echp 'Selenium test'
                 sh "python3 ./test/test1.py"
 
-                script{
-                    echo "Test radom API";
-                    retry(3) {
-                        sh "curl localhost:4000/random"
-                    }
-
-
+                echo "Test radom API";
+                retry(3) {
+                    sh "curl localhost:4000/random"
                 }
+
+
             }
 
         }
