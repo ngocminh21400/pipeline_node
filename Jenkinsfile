@@ -13,7 +13,9 @@ pipeline{
     stages{
         stage('Git update'){
             when { 
-                params.AGENT == true
+                expression{
+                    params.AGENT == true
+                }
             }
             steps{
                 sh 'cat /etc/os-release'
