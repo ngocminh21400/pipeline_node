@@ -68,7 +68,7 @@ pipeline{
                         }
 
                         echo "Test API";
-                        for(int i = 1;i < (params.REPEAT_TIMES as int);i++) {
+                        for(int i = 0;i < (params.REPEAT_TIMES as int);i++) {
                             sh "pytest ./test/test2.py"
                         }
 
