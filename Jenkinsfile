@@ -75,7 +75,9 @@ pipeline{
                 echo "Test radom API";
      
                 script{
-                    for(int i = 0;i< params.REPEAT_TIMES;i++) {
+                    print(params.REPEAT_TIMES);
+                    
+                    for(int i = 0;i < params.REPEAT_TIMES;i++) {
                         sh 'curl localhost:4000/random'
                     }
                 }
