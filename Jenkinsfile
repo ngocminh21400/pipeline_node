@@ -10,6 +10,9 @@ pipeline{
         choice(name: 'REPEAT_TIMES', choices: [1,2,3,4], description: 'Choose times to repeat get API test')
         
         booleanParam(name: 'CHECKOUT_CODE', defaultValue: true)
+
+        booleanParam(name: 'KEEP_DOCKER_RUNNING', defaultValue: false)
+
     }
 
     agent {label params.AGENT == "any" ? "" : params.AGENT}
@@ -88,8 +91,12 @@ pipeline{
     }  
     post {
         always {
-            sh 'docker stop my-node'
-            sh 'docker container prune --force'
+            script{
+                if(params.KEEP_DOCKER_RUNNING == false){
+                    sh 'docker stop my-node'
+                    sh 'docker container prune --force'
+                }
+            }
             echo 'One way or another, I have finished'
             deleteDir() /* clean up our workspace */
         }
