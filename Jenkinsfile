@@ -67,13 +67,11 @@ pipeline{
                             echo e.toString()
                         }
 
-                        echo "Test radom API";
-     
+                        echo "Test API";
                         for(int i = 1;i < (params.REPEAT_TIMES as int);i++) {
-                            sh 'curl localhost:4000/random'
-                            print(i);
-                            print(params.REPEAT_TIMES);
+                            sh "pytest ./test/test2.py"
                         }
+
 
                         echo 'Selenium test'
                         sh "python3 ./test/test1.py"
