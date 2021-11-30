@@ -63,27 +63,23 @@ pipeline{
                             echo "ERROR TEST"
                             echo e.toString()
                         }
+
+                        echo "Test radom API";
+     
+                        for(int i = 1;i < (params.REPEAT_TIMES as int);i++) {
+                            sh 'curl localhost:4000/random'
+                            print(i);
+                            print(params.REPEAT_TIMES);
+                        }
+
+                        echo 'Selenium test'
+                        sh "python3 ./test/test1.py"
+                
                     }else{
                         echo "Stage Test skipped"
                     }
             
                 }
-
-                echo 'Selenium test'
-                sh "python3 ./test/test1.py"
-
-                echo "Test radom API";
-     
-                script{
-                    //print(params.REPEAT_TIMES.getClass());
-                    print(5<(params.REPEAT_TIMES as int));
-                    // for(int i = 1;i < params.REPEAT_TIMES;i++) {
-                    //     sh 'curl localhost:4000/random'
-                    //     print(i);
-                    //     print(params.REPEAT_TIMES);
-                    // }
-                }
-
 
             }
 
