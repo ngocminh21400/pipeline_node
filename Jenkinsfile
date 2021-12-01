@@ -90,16 +90,20 @@ pipeline{
                 }
 
             }
+            post{
+                always{
+                    junit(
+                        allowEmptyResults: true,
+                        testResults: '${env.JENKINS_HOME}/workspace/test-reports/*.xml'
+                    )
+                }
+            }
 
         }
 
     }  
     post {
         always {
-            junit(
-                allowEmptyResults: true,
-                testResults: '${env.JENKINS_HOME}/workspace/test-reports/*.xml'
-            )
             script{
                 if(params.KEEP_DOCKER_RUNNING == false){
                     sh 'docker stop my-node'
