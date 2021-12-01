@@ -96,7 +96,8 @@ pipeline{
     }  
     post {
         always {
-             junit(
+            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+            junit(
                 allowEmptyResults: true,
                 testResults: '${env.JENKINS_HOME}/workspace/test-reports/*.xml'
             )
