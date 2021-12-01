@@ -17,10 +17,10 @@ pipeline{
 
     agent {label params.AGENT == "any" ? "" : params.AGENT}
 
-    triggers {
-        cron('H/5 * * * *')
-    }
-    
+    // triggers {
+    //     cron('H/5 * * * *')
+    // }
+
     stages{
         stage('Preparation'){
             steps{
