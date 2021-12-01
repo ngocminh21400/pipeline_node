@@ -91,7 +91,7 @@ pipeline{
         always {
              junit(
                 allowEmptyResults: true,
-                testResults: '**/test-reports/*.xml'
+                testResults: '${env.WORKSPACE}/test-reports/*.xml'
             )
             script{
                 if(params.KEEP_DOCKER_RUNNING == false){
