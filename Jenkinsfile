@@ -18,6 +18,9 @@ pipeline{
     agent {label params.AGENT == "any" ? "" : params.AGENT}
 
     stages{
+        stage('Preparation'){
+            sh "env | sort"
+        }
         stage('Git update'){
             when { 
                 expression{
