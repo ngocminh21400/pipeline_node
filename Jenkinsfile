@@ -89,6 +89,10 @@ pipeline{
     }  
     post {
         always {
+             junit(
+                allowEmptyResults: true,
+                testResults: '**/test-reports/*.xml'
+            )
             script{
                 if(params.KEEP_DOCKER_RUNNING == false){
                     sh 'docker stop my-node'
