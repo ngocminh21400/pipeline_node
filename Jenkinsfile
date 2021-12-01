@@ -60,12 +60,12 @@ pipeline{
 
                 script{
                     if(buildSuccess == true){
-                        try{
-                            sh 'curl localhost:4000'
-                        }catch(Exception e){
-                            echo "ERROR TEST"
-                            echo e.toString()
-                        }
+                        // try{
+                        //     sh 'curl localhost:4000'
+                        // }catch(Exception e){
+                        //     echo "ERROR TEST"
+                        //     echo e.toString()
+                        // }
 
                         echo "Test API";
                         for(int i = 0;i < (params.REPEAT_TIMES as int);i++) {
