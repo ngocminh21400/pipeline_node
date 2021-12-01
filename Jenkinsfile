@@ -19,8 +19,11 @@ pipeline{
 
     stages{
         stage('Preparation'){
-            sh "env | sort"
+            steps{
+                sh "env | sort"
+            }
         }
+
         stage('Git update'){
             when { 
                 expression{
@@ -34,6 +37,7 @@ pipeline{
                 echo 'Clone Done..'
             }
         }
+
         stage('Docker build'){
             steps{
                 echo 'Building..'
